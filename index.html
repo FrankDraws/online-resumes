@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frank Juval Quinones — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=DM+Serif+Display&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+	/* ── TYPOGRAPHY SCALE ─────────────────────────────────────────
+	   Change --font-scale to resize all type at once.
+	   1.0 = original · 1.2 = +20% · 1.4 = +40% · 0.9 = -10%
+	───────────────────────────────────────────────────────────── */
+	--font-scale: 1.2;
+
+	/* Base sizes (px) × scale → clamp(min, preferred, max)
+	   Formula: clamp(base * 0.85 * scale, base * scale * 0.9vw / 8, base * 1.25 * scale)
+	   Written out per role for clarity and easy tweaking:        */
+	--fs-name:        clamp(calc(36px * var(--font-scale) * 0.85), calc(36px * var(--font-scale)), calc(36px * var(--font-scale) * 1.15));
+	--fs-body:        clamp(calc(13px * var(--font-scale) * 0.85), calc(13px * var(--font-scale)), calc(13px * var(--font-scale) * 1.15));
+	--fs-contact:     clamp(calc(12px * var(--font-scale) * 0.85), calc(12px * var(--font-scale)), calc(12px * var(--font-scale) * 1.15));
+	--fs-value:       clamp(calc(13px * var(--font-scale) * 0.85), calc(13px * var(--font-scale)), calc(13px * var(--font-scale) * 1.15));
+	--fs-skill-cat:   clamp(calc(10px * var(--font-scale) * 0.85), calc(10px * var(--font-scale)), calc(10px * var(--font-scale) * 1.15));
+	--fs-skill-items: clamp(calc(11.5px * var(--font-scale) * 0.85), calc(11.5px * var(--font-scale)), calc(11.5px * var(--font-scale) * 1.15));
+	--fs-section:     clamp(calc(10.5px * var(--font-scale) * 0.85), calc(10.5px * var(--font-scale)), calc(10.5px * var(--font-scale) * 1.15));
+	--fs-job-title:   clamp(calc(14px * var(--font-scale) * 0.85), calc(14px * var(--font-scale)), calc(14px * var(--font-scale) * 1.15));
+	--fs-job-meta:    clamp(calc(11.5px * var(--font-scale) * 0.85), calc(11.5px * var(--font-scale)), calc(11.5px * var(--font-scale) * 1.15));
+	--fs-bullet:      clamp(calc(12.5px * var(--font-scale) * 0.85), calc(12.5px * var(--font-scale)), calc(12.5px * var(--font-scale) * 1.15));
+	--fs-edu:         clamp(calc(12.5px * var(--font-scale) * 0.85), calc(12.5px * var(--font-scale)), calc(12.5px * var(--font-scale) * 1.15));
+
+	/* ── COLORS ── */
+	--ink: #1a1a1a;
+	--ink-mid: #444;
+	--ink-muted: #777;
+	--ink-faint: #999;
+	--rule: #ddd;
+	--bg: #ffffff;
+	--bg-tint: #f7f6f4;
+	--accent: #1a4f6e;
+	--accent-light: #e8f2f8;
+	--gap-bg: #f0f7f4;
+	--gap-border: #2e7d5e;
+	--sans: 'DM Sans', system-ui, sans-serif;
+	--serif: 'DM Serif Display', Georgia, serif;
+  }
+
+  body {
+	font-family: var(--sans);
+	font-size: var(--fs-body);
+	line-height: 1.65;
+	color: var(--ink);
+	background: #eee;
+	padding: 2rem 1rem;
+  }
+
+  .page {
+	background: var(--bg);
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 3rem 4rem;
+	box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  }
+
+  /* ── HEADER ── */
+  .header {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 1.5rem;
+	align-items: start;
+	padding-bottom: 1.5rem;
+	border-bottom: 1.5px solid var(--ink);
+	margin-bottom: 1.5rem;
+  }
+  .name {
+	font-family: var(--serif);
+	font-size: var(--fs-name);
+	font-weight: 400;
+	color: var(--ink);
+	letter-spacing: -0.01em;
+	line-height: 1.1;
+  }
+  .tagline {
+	font-size: var(--fs-body);
+	color: var(--ink-mid);
+	margin-top: 6px;
+	max-width: 480px;
+	line-height: 1.6;
+	font-style: italic;
+  }
+  .contact-block {
+	text-align: right;
+	font-size: var(--fs-contact);
+	color: var(--ink-muted);
+	line-height: 1.9;
+  }
+  .contact-block a { color: var(--accent); text-decoration: none; }
+  .contact-block a:hover { text-decoration: underline; }
+
+  /* ── VALUE PROP ── */
+  .value-prop {
+	background: var(--bg-tint);
+	border-left: 3px solid var(--accent);
+	padding: 14px 16px;
+	margin-bottom: 1.75rem;
+	border-radius: 0 4px 4px 0;
+  }
+  .value-prop p {
+	font-size: var(--fs-value);
+	color: var(--ink-mid);
+	line-height: 1.7;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+	margin-bottom: 1.75rem;
+  }
+  .skill-card {
+	border: 1px solid var(--rule);
+	padding: 10px 12px;
+	border-radius: 4px;
+  }
+  .skill-cat {
+	font-size: var(--fs-skill-cat);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--accent);
+	margin-bottom: 5px;
+  }
+  .skill-items {
+	font-size: var(--fs-skill-items);
+	color: var(--ink-mid);
+	line-height: 1.65;
+  }
+
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 1.75rem; }
+  .section-title {
+	font-size: var(--fs-section);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--ink-muted);
+	border-bottom: 1px solid var(--rule);
+	padding-bottom: 5px;
+	margin-bottom: 1rem;
+  }
+
+  /* ── JOB ENTRY ── */
+  .job { margin-bottom: 1.25rem; display: grid; grid-template-columns: 3px 1fr; gap: 14px; }
+  .job-bar { background: var(--rule); border-radius: 2px; }
+  .job-title { font-size: var(--fs-job-title); font-weight: 500; color: var(--ink); }
+  .job-meta { font-size: var(--fs-job-meta); color: var(--ink-muted); margin-bottom: 6px; margin-top: 1px; }
+  .job-meta strong { color: var(--ink-mid); font-weight: 500; }
+  ul.bullets { padding-left: 15px; }
+  ul.bullets li {
+	font-size: var(--fs-bullet);
+	color: var(--ink-mid);
+	margin-bottom: 4px;
+	line-height: 1.55;
+  }
+  ul.bullets li::marker { color: var(--accent); }
+
+  /* ── GAP ENTRY ── */
+  .gap-entry { margin-bottom: 1.25rem; display: grid; grid-template-columns: 3px 1fr; gap: 14px; }
+  .gap-bar { background: var(--gap-border); border-radius: 2px; }
+  .gap-inner { background: var(--gap-bg); border-radius: 4px; padding: 12px 14px; }
+  .gap-title { font-size: var(--fs-job-title); font-weight: 500; color: var(--ink); }
+  .gap-meta { font-size: var(--fs-job-meta); color: var(--ink-muted); margin-bottom: 6px; margin-top: 1px; }
+  .gap-meta strong { color: var(--ink-mid); font-weight: 500; }
+  .gap-desc { font-size: var(--fs-bullet); color: var(--ink-mid); line-height: 1.65; }
+
+  /* ── EDUCATION ── */
+  .edu-row { font-size: var(--fs-edu); color: var(--ink-mid); line-height: 1.8; }
+
+  /* ── PRINT ── */
+  @media print {
+	body { background: white; padding: 0; }
+	.page { box-shadow: none; padding: 1.5rem 2rem; }
+  }
+
+  @media (max-width: 680px) {
+	.page { padding: 2rem 1.5rem; }
+	.header { grid-template-columns: 1fr; }
+	.contact-block { text-align: left; }
+	.skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+	<div>
+	  <div class="name">Frank Juval Quinones</div>
+	  <div class="tagline">Creative technologist with 30 years in design, front-end development &amp; digital experience —<br>returning to full-time work after a purposeful career pause.</div>
+	</div>
+	<div class="contact-block">
+	  Inverness, FL<br>
+	  <a href="mailto:frankdraws@outlook.com">frankdraws@outlook.com</a><br>
+	  <a href="https://www.frankjuval.com" target="_blank">frankjuval.com</a><br>
+	  <a href="https://codepen.io/frankDraws/" target="_blank">CodePen</a> &nbsp;·&nbsp;
+	  <a href="https://www.linkedin.com/in/frankjuval/" target="_blank">LinkedIn</a>
+	</div>
+  </header>
+
+  <!-- VALUE PROPOSITION -->
+  <div class="value-prop">
+	<p>I build things that work — responsive web interfaces, chatbots, email systems, internal tools, and digital experiences. Over 30 years I've served as the creative-technical bridge between teams, launched first-of-kind digital products, and mentored people along the way. I took a deliberate step back from full-time employment to provide caregiving for family members, volunteer with hospice patients, and homeschool my three teenagers. I'm ready to bring that same reliability, patience, and purpose to your team.</p>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills-grid">
+	<div class="skill-card">
+	  <div class="skill-cat">Front-end dev</div>
+	  <div class="skill-items">HTML · CSS · JavaScript · Responsive design · Email development · GitHub · Terminal/CLI</div>
+	</div>
+	<div class="skill-card">
+	  <div class="skill-cat">Design &amp; UX</div>
+	  <div class="skill-items">Figma · Illustrator · Photoshop · InDesign · UX/UI · Visual systems · Art direction</div>
+	</div>
+	<div class="skill-card">
+	  <div class="skill-cat">Support &amp; ops</div>
+	  <div class="skill-items">Project coordination · Mentoring · Client communication · Troubleshooting · Documentation</div>
+	</div>
+	<div class="skill-card">
+	  <div class="skill-cat">People skills</div>
+	  <div class="skill-items">Patient care · Active listening · Crisis calm · Teaching complex topics simply · Scheduling</div>
+	</div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+	<div class="section-title">Experience</div>
+
+	<!-- Universal -->
+	<div class="job">
+	  <div class="job-bar"></div>
+	  <div>
+		<div class="job-title">Front End Developer &amp; Digital Designer</div>
+		<div class="job-meta"><strong>Universal Parks &amp; Resorts</strong> &nbsp;·&nbsp; Orlando, FL &nbsp;·&nbsp; 2013–2020</div>
+		<ul class="bullets">
+		  <li>Built Universal's first industry chatbot, deployed simultaneously across Orlando and Hollywood parks — reducing repetitive support inquiries at scale</li>
+		  <li>Led Meetings &amp; Events website redesign from brief through launch, coordinating across creative, dev, and stakeholder teams</li>
+		  <li>Developed internal sales application that gained adoption across Orlando, Hollywood, and New York offices</li>
+		  <li>Designed Universal's first responsive email system — improving mobile readability and campaign performance</li>
+		  <li>Spearheaded digital experience for the annual Harry Potter event at Universal Orlando Resort</li>
+		  <li>Mentored team members and brokered partnership with UCF Design program to strengthen the team's talent pipeline</li>
+		</ul>
+	  </div>
+	</div>
+
+	<!-- Gap -->
+	<div class="gap-entry">
+	  <div class="gap-bar"></div>
+	  <div class="gap-inner">
+		<div class="gap-title">Career Transition &amp; Independent Work</div>
+		<div class="gap-meta"><strong>Self-directed</strong> &nbsp;·&nbsp; 2020–2026</div>
+		<div class="gap-desc">Following an unexpected job loss, redirected focus toward what mattered most while maintaining professional activity: provided caregiving for family members managing serious medical needs; volunteered as a direct caregiver for hospice patients, focused on dignity and comfort; and homeschooled three teenagers — researching curriculum, designing lesson plans, and adapting instruction to individual learning styles. Maintained active freelance client work in web design and front-end development throughout. These years reinforced and deepened skills in scheduling under pressure, patient and empathetic communication, crisis composure, and consistent reliable service to others.</div>
+	  </div>
+	</div>
+
+	<!-- Affiliate Manager / Marriott -->
+	<div class="job">
+	  <div class="job-bar"></div>
+	  <div>
+		<div class="job-title">Web Designer</div>
+		<div class="job-meta"><strong>Affiliate Manager.com</strong> &nbsp;·&nbsp; 2012–2013 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Marriott Vacation Club</strong> &nbsp;·&nbsp; 2011–2012</div>
+		<ul class="bullets">
+		  <li>Designed and developed email marketing campaigns, landing pages, and UI enhancements for consumer-facing brands</li>
+		  <li>Led design reviews, presented creative direction to stakeholders, and mentored junior team members</li>
+		  <li>Developed new UI systems to simplify user experience and uphold brand standards</li>
+		</ul>
+	  </div>
+	</div>
+
+	<!-- Visit Orlando / Tupperware / Ames -->
+	<div class="job">
+	  <div class="job-bar"></div>
+	  <div>
+		<div class="job-title">Graphic Designer / Publications Artist</div>
+		<div class="job-meta"><strong>Visit Orlando</strong> &nbsp;·&nbsp; 2004–2008 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Tupperware</strong> &nbsp;·&nbsp; 2002–2004 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Ames True Temper</strong> &nbsp;·&nbsp; 2002</div>
+		<ul class="bullets">
+		  <li>Delivered print and digital design across posters, trade show collateral, editorial illustration, email marketing, and web</li>
+		  <li>Played a key role in launching first email and online marketing initiatives at Tupperware</li>
+		  <li>Contributed to post-merger rebranding of Ames and True Temper, introducing new product lines through design</li>
+		  <li>Art directed photography; conducted client presentations; built internal client relationships</li>
+		</ul>
+	  </div>
+	</div>
+
+	<!-- Early career -->
+	<div class="job">
+	  <div class="job-bar"></div>
+	  <div>
+		<div class="job-title">Graphic Artist &amp; Animator</div>
+		<div class="job-meta"><strong>The Miami Herald, Design Agencies &amp; Freelance</strong> &nbsp;·&nbsp; 1994–2002</div>
+		<ul class="bullets">
+		  <li>30-year foundation in illustration, animation, print, and early digital/web work across agency, in-house, and independent contexts</li>
+		</ul>
+	  </div>
+	</div>
+
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+	<div class="section-title">Education</div>
+	<div class="edu-row">
+	  <strong>A.A.S. Graphic Design</strong> — Santa Fe College, Gainesville FL &nbsp;·&nbsp; 1999–2001<br>
+	  Animation Program — University of Central Florida, Orlando FL &nbsp;·&nbsp; 1997–1998<br>
+	  Fine Arts Program — New World School of the Arts, Miami FL &nbsp;·&nbsp; 1994–1996
+	</div>
+  </div>
+
+</div>
+</body>
+</html>
