@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frank Juval Quinones — Resume</title>
+
+<!-- Shoelace 2.15 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css"/>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ── RESET & TOKENS ─────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+	--font-scale: 1.0;
+
+	--ink:       #1c1917;
+	--ink-mid:   #44403c;
+	--ink-muted: #78716c;
+	--rule:      #e7e5e4;
+	--bg:        #fafaf9;
+	--bg-card:   #ffffff;
+	--accent:    #1c4a6e;
+	--accent-2:  #b45309;
+	--gap-bg:    #f0fdf4;
+	--gap-line:  #16a34a;
+
+	/* role accent colors */
+	--role-creative:   #7c3aed;
+	--role-frontend:   #0369a1;
+	--role-support:    #0f766e;
+	--role-retail:     #b45309;
+	--role-leadership: #991b1b;
+
+	--sans:  'Jost', system-ui, sans-serif;
+	--serif: 'Playfair Display', Georgia, serif;
+
+	--fs-name:      clamp(calc(38px * var(--font-scale) * 0.85), calc(38px * var(--font-scale)), calc(38px * var(--font-scale) * 1.15));
+	--fs-body:      clamp(calc(13.5px * var(--font-scale) * 0.9), calc(13.5px * var(--font-scale)), calc(13.5px * var(--font-scale) * 1.1));
+	--fs-sm:        clamp(calc(12px * var(--font-scale) * 0.9), calc(12px * var(--font-scale)), calc(12px * var(--font-scale) * 1.1));
+	--fs-xs:        clamp(calc(10.5px * var(--font-scale) * 0.9), calc(10.5px * var(--font-scale)), calc(10.5px * var(--font-scale) * 1.1));
+	--fs-job-title: clamp(calc(15px * var(--font-scale) * 0.9), calc(15px * var(--font-scale)), calc(15px * var(--font-scale) * 1.1));
+  }
+
+  /* ── PAGE SHELL ─────────────────────────────────────────── */
+  body {
+	font-family: var(--sans);
+	font-size: var(--fs-body);
+	color: var(--ink);
+	background: #e8e6e3;
+	min-height: 100vh;
+	padding: 2.5rem 1rem;
+  }
+
+  .page {
+	background: var(--bg-card);
+	max-width: 920px;
+	margin: 0 auto;
+	padding: 3rem 4rem;
+	box-shadow: 0 8px 48px rgba(0,0,0,0.12);
+	border-radius: 2px;
+  }
+
+  /* ── HEADER ─────────────────────────────────────────────── */
+  .header {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 2rem;
+	align-items: start;
+	padding-bottom: 1.5rem;
+	border-bottom: 2px solid var(--ink);
+	margin-bottom: 2rem;
+  }
+
+  .name {
+	font-family: var(--serif);
+	font-size: var(--fs-name);
+	font-weight: 400;
+	letter-spacing: -0.01em;
+	line-height: 1.05;
+	color: var(--ink);
+  }
+
+  .tagline {
+	font-size: var(--fs-sm);
+	color: var(--ink-muted);
+	margin-top: 7px;
+	font-style: italic;
+	line-height: 1.6;
+	max-width: 440px;
+  }
+
+  .contact-block {
+	text-align: right;
+	font-size: var(--fs-sm);
+	color: var(--ink-muted);
+	line-height: 2;
+  }
+  .contact-block a { color: var(--accent); text-decoration: none; }
+  .contact-block a:hover { text-decoration: underline; }
+
+  /* ── ROLE SELECTOR ──────────────────────────────────────── */
+  .role-bar {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	background: var(--bg);
+	border: 1px solid var(--rule);
+	border-radius: 6px;
+	padding: 12px 16px;
+	margin-bottom: 2rem;
+  }
+
+  .role-bar label {
+	font-size: var(--fs-xs);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--ink-muted);
+	white-space: nowrap;
+	flex-shrink: 0;
+  }
+
+  .role-bar sl-select {
+	flex: 1;
+	max-width: 340px;
+	--sl-input-font-family: var(--sans);
+	--sl-input-font-size-medium: var(--fs-body);
+  }
+
+  /* role color dot in header */
+  .role-indicator {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: var(--fs-xs);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.09em;
+	color: var(--current-role-color, var(--ink-muted));
+	transition: color 0.3s;
+  }
+  .role-dot {
+	width: 8px; height: 8px;
+	border-radius: 50%;
+	background: var(--current-role-color, var(--rule));
+	transition: background 0.3s;
+	flex-shrink: 0;
+  }
+
+  /* ── VALUE PROP ─────────────────────────────────────────── */
+  .value-prop {
+	border-left: 3px solid var(--current-role-color, var(--accent));
+	background: var(--bg);
+	padding: 14px 18px;
+	margin-bottom: 2rem;
+	border-radius: 0 4px 4px 0;
+	transition: border-color 0.4s;
+  }
+  .value-prop p {
+	font-size: var(--fs-body);
+	color: var(--ink-mid);
+	line-height: 1.75;
+  }
+  .value-prop p.hidden { display: none; }
+
+  /* ── SKILLS GRID ────────────────────────────────────────── */
+  .skills-section { margin-bottom: 2rem; }
+
+  .section-label {
+	font-size: var(--fs-xs);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--ink-muted);
+	border-bottom: 1px solid var(--rule);
+	padding-bottom: 6px;
+	margin-bottom: 1rem;
+  }
+
+  .skills-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+  }
+
+  .skill-card {
+	border: 1px solid var(--rule);
+	padding: 11px 13px;
+	border-radius: 4px;
+	transition: border-color 0.3s, background 0.3s;
+  }
+  .skill-card.highlighted {
+	border-color: var(--current-role-color, var(--accent));
+	background: color-mix(in srgb, var(--current-role-color, var(--accent)) 6%, white);
+  }
+  .skill-cat {
+	font-size: var(--fs-xs);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--current-role-color, var(--accent));
+	margin-bottom: 5px;
+	transition: color 0.3s;
+  }
+  .skill-items {
+	font-size: var(--fs-sm);
+	color: var(--ink-mid);
+	line-height: 1.65;
+  }
+
+  /* ── EXPERIENCE ─────────────────────────────────────────── */
+  .exp-section { margin-bottom: 2rem; }
+
+  .job { margin-bottom: 1.5rem; display: grid; grid-template-columns: 3px 1fr; gap: 16px; }
+  .job-bar { border-radius: 2px; background: var(--rule); transition: background 0.3s; }
+  .job-bar.accent { background: var(--current-role-color, var(--accent)); }
+
+  .job-title { font-size: var(--fs-job-title); font-weight: 500; color: var(--ink); }
+  .job-meta { font-size: var(--fs-sm); color: var(--ink-muted); margin: 2px 0 8px; }
+  .job-meta strong { color: var(--ink-mid); font-weight: 500; }
+
+  ul.bullets { padding-left: 16px; }
+  ul.bullets li {
+	font-size: var(--fs-body);
+	color: var(--ink-mid);
+	margin-bottom: 5px;
+	line-height: 1.55;
+  }
+  ul.bullets li::marker { color: var(--current-role-color, var(--accent)); transition: color 0.3s; }
+  ul.bullets li.hidden { display: none; }
+
+  /* ── GAP ENTRY ──────────────────────────────────────────── */
+  .gap-entry { margin-bottom: 1.5rem; display: grid; grid-template-columns: 3px 1fr; gap: 16px; }
+  .gap-bar { background: var(--gap-line); border-radius: 2px; }
+  .gap-inner { background: var(--gap-bg); border-radius: 4px; padding: 13px 16px; }
+  .gap-title { font-size: var(--fs-job-title); font-weight: 500; color: var(--ink); }
+  .gap-meta { font-size: var(--fs-sm); color: var(--ink-muted); margin: 2px 0 7px; }
+  .gap-meta strong { color: var(--ink-mid); font-weight: 500; }
+  .gap-desc { font-size: var(--fs-body); color: var(--ink-mid); line-height: 1.7; }
+
+  /* ── EDUCATION ──────────────────────────────────────────── */
+  .edu-section { padding-top: 1rem; border-top: 1px solid var(--rule); }
+  .edu-row { font-size: var(--fs-sm); color: var(--ink-mid); line-height: 1.9; }
+
+  /* ── TRANSITION ─────────────────────────────────────────── */
+  .fade-target {
+	transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .fade-out {
+	opacity: 0;
+	transform: translateY(4px);
+  }
+
+  /* ── SHOELACE OVERRIDES ─────────────────────────────────── */
+  sl-select::part(combobox) {
+	border-radius: 4px;
+	font-family: var(--sans);
+  }
+  sl-badge::part(base) {
+	font-family: var(--sans);
+	font-size: 10px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 680px) {
+	.page { padding: 2rem 1.5rem; }
+	.header { grid-template-columns: 1fr; }
+	.contact-block { text-align: left; }
+	.skills-grid { grid-template-columns: repeat(2, 1fr); }
+	.role-bar { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+	<div>
+	  <div class="name">Frank Juval Quinones</div>
+	  <div class="tagline">30+ years in design, technology &amp; digital experience — creative technologist, builder, and people developer.</div>
+	</div>
+	<div class="contact-block">
+	  <a href="mailto:frankdraws@outlook.com">frankdraws@outlook.com</a><br>
+	  <a href="https://www.frankjuval.com" target="_blank">frankjuval.com</a><br>
+	  <a href="https://codepen.io/frankDraws/" target="_blank">CodePen</a> &nbsp;·&nbsp;
+	  <a href="https://www.linkedin.com/in/frankjuval/" target="_blank">LinkedIn</a>
+	</div>
+  </header>
+
+  <!-- ROLE SELECTOR -->
+  <div class="role-bar">
+	<label for="role-select">Viewing as:</label>
+	<sl-select id="role-select" value="frontend" size="medium" hoist>
+	  <sl-option value="creative">🎨 &nbsp;Creative &amp; Design</sl-option>
+	  <sl-option value="frontend">💻 &nbsp;Front-End / Web Dev</sl-option>
+	  <sl-option value="support">🛠 &nbsp;IT Help Desk / Support</sl-option>
+	  <sl-option value="retail">🤝 &nbsp;Retail / Customer Service</sl-option>
+	  <sl-option value="leadership">🧭 &nbsp;Leadership &amp; Management</sl-option>
+	</sl-select>
+	<div class="role-indicator">
+	  <span class="role-dot" id="role-dot"></span>
+	  <span id="role-label"></span>
+	</div>
+  </div>
+
+  <!-- VALUE PROPOSITION -->
+  <div class="value-prop fade-target" id="value-prop-block">
+	<p id="vp-creative" class="hidden">I've spent 30 years solving visual problems — from editorial illustration and animation to brand systems, print campaigns, and digital experience design. I've art directed photography, designed for print at scale, built UX systems from scratch, and led the visual direction of major digital products. I bring creative vision, craft, and the ability to translate a brand's story into every pixel.</p>
+	<p id="vp-frontend" class="hidden">I build things that work and look good doing it — responsive web interfaces, chatbots, email systems, internal tools, and digital experiences. I bridge creative and technical with equal fluency, and I've shipped first-of-kind digital products at scale. I'm comfortable in the terminal, on GitHub, and in the browser dev tools. I'm ready to contribute to your team from day one.</p>
+	<p id="vp-support" class="hidden">I've spent decades diagnosing problems — visual, technical, and human. I built Universal's first chatbot to reduce repetitive support load, developed internal tools that spread across multiple offices, and spent years adapting to whatever the work required. I'm calm under pressure, patient with non-technical users, and I document things clearly. I've also homeschooled three teenagers and volunteered in hospice care — I know how to meet people where they are.</p>
+	<p id="vp-retail" class="hidden">I show up, I follow through, and I treat people with patience and respect — because that's how I've operated for 30 years across organizations large and small. I've served internal clients, mentored teammates, navigated complex stakeholder relationships, and spent years as a caregiver for both family members and hospice patients. I understand service, urgency, and dignity. I'm ready to bring that same steady energy to your team.</p>
+	<p id="vp-leadership" class="hidden">I've spent 30 years identifying gaps, building solutions, and bringing people along for the ride. I launched Universal's first chatbot, led website redesigns from brief to launch, built internal tools that scaled across offices, and brokered a university partnership to strengthen our talent pipeline. I mentor naturally, communicate across disciplines, and make things happen without waiting for permission. My career is a record of initiative, ownership, and results.</p>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills-section">
+	<div class="section-label">Core Skills</div>
+	<div class="skills-grid" id="skills-grid">
+	  <!-- cards injected by JS -->
+	</div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="exp-section">
+	<div class="section-label">Experience</div>
+
+	<!-- Universal -->
+	<div class="job" id="job-universal">
+	  <div class="job-bar accent" id="bar-universal"></div>
+	  <div>
+		<div class="job-title">Front End Developer &amp; Digital Designer</div>
+		<div class="job-meta"><strong>Universal Parks &amp; Resorts</strong> &nbsp;·&nbsp; Orlando, FL &nbsp;·&nbsp; 2013–2020</div>
+		<ul class="bullets" id="bullets-universal">
+		  <!-- bullets injected by JS -->
+		</ul>
+	  </div>
+	</div>
+
+	<!-- Gap -->
+	<div class="gap-entry">
+	  <div class="gap-bar"></div>
+	  <div class="gap-inner">
+		<div class="gap-title">Career Transition &amp; Independent Work</div>
+		<div class="gap-meta"><strong>Self-directed</strong> &nbsp;·&nbsp; 2020–2026</div>
+		<div class="gap-desc">Following an unexpected job loss, redirected focus toward what mattered most while maintaining professional activity: provided caregiving for family members managing serious medical needs; volunteered as a direct caregiver for hospice patients, focused on dignity and comfort; and homeschooled three teenagers — researching curriculum, designing lesson plans, and adapting instruction to individual learning styles. Maintained active freelance client work in web design and front-end development throughout.</div>
+	  </div>
+	</div>
+
+	<!-- Affiliate / Marriott -->
+	<div class="job">
+	  <div class="job-bar" id="bar-web"></div>
+	  <div>
+		<div class="job-title">Web Designer</div>
+		<div class="job-meta"><strong>Affiliate Manager.com</strong> &nbsp;·&nbsp; 2012–2013 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Marriott Vacation Club</strong> &nbsp;·&nbsp; 2011–2012</div>
+		<ul class="bullets" id="bullets-web">
+		</ul>
+	  </div>
+	</div>
+
+	<!-- Visit Orlando / Tupperware / Ames -->
+	<div class="job">
+	  <div class="job-bar" id="bar-design"></div>
+	  <div>
+		<div class="job-title">Graphic Designer / Publications Artist</div>
+		<div class="job-meta"><strong>Visit Orlando</strong> &nbsp;·&nbsp; 2004–2008 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Tupperware</strong> &nbsp;·&nbsp; 2002–2004 &nbsp;&nbsp;|&nbsp;&nbsp; <strong>Ames True Temper</strong> &nbsp;·&nbsp; 2002</div>
+		<ul class="bullets" id="bullets-design">
+		</ul>
+	  </div>
+	</div>
+
+	<!-- Early career -->
+	<div class="job">
+	  <div class="job-bar" id="bar-early"></div>
+	  <div>
+		<div class="job-title">Graphic Artist &amp; Animator</div>
+		<div class="job-meta"><strong>The Miami Herald, Design Agencies &amp; Freelance</strong> &nbsp;·&nbsp; 1994–2002</div>
+		<ul class="bullets" id="bullets-early">
+		</ul>
+	  </div>
+	</div>
+
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="edu-section">
+	<div class="section-label">Education</div>
+	<div class="edu-row">
+	  <strong>A.A.S. Graphic Design</strong> — Santa Fe College, Gainesville FL &nbsp;·&nbsp; 1999–2001<br>
+	  Animation Program — University of Central Florida, Orlando FL &nbsp;·&nbsp; 1997–1998<br>
+	  Fine Arts Program — New World School of the Arts, Miami FL &nbsp;·&nbsp; 1994–1996
+	</div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+// ── ROLE DATA ────────────────────────────────────────────────
+const roles = {
+  creative: {
+	label: 'Creative & Design',
+	color: '#7c3aed',
+	skills: [
+	  { cat: 'Visual craft',     items: 'Illustration · Animation · Calligraphy · Typography · Art direction',           highlight: true },
+	  { cat: 'Design systems',   items: 'Brand identity · Print · Editorial · Figma · Illustrator · Photoshop · InDesign', highlight: true },
+	  { cat: 'Digital design',   items: 'UX/UI · Email design · Web graphics · Responsive layouts · Motion',             highlight: true },
+	  { cat: 'Process',          items: 'Concept development · Client presentations · Creative direction · Mentoring',    highlight: false },
+	],
+	bullets: {
+	  universal: [
+		'Spearheaded the complete digital experience design for the annual Harry Potter event at Universal Orlando Resort',
+		'Led visual direction for Universal\'s Meetings & Events website — from initial brief through final launch',
+		'Designed Universal\'s first responsive email system, establishing visual standards adopted across campaigns',
+		'Created chatbot interface and conversation design for Universal\'s industry-first parks assistant',
+		'Partnered with UCF Design program to bring fresh creative talent into the team pipeline',
+	  ],
+	  web: [
+		'Designed email marketing, landing pages, and UI systems for consumer-facing hospitality and affiliate brands',
+		'Upheld and evolved brand standards across all digital touchpoints at Marriott Vacation Club',
+		'Led creative reviews and design presentations with stakeholders and senior leadership',
+	  ],
+	  design: [
+		'Produced editorial illustration, poster design, trade show collateral, and print campaigns for Visit Orlando',
+		'Maintained Tupperware\'s brand equity through contemporary design across print and digital channels',
+		'Played lead design role in post-merger rebranding of Ames and True Temper — new identity, new product visuals',
+		'Art directed photography and conducted client presentations across multiple organizations',
+	  ],
+	  early: [
+		'30-year foundation in illustration, animation, and graphic design — print, broadcast, and early digital — across The Miami Herald, agencies, and freelance',
+	  ],
+	}
+  },
+
+  frontend: {
+	label: 'Front-End / Web Dev',
+	color: '#0369a1',
+	skills: [
+	  { cat: 'Languages',        items: 'HTML · CSS · JavaScript · Responsive design · Email development',               highlight: true },
+	  { cat: 'Tooling',          items: 'GitHub · Terminal/CLI · VS Code · CMS platforms · Browser DevTools',            highlight: true },
+	  { cat: 'Design + Dev',     items: 'Figma · Illustrator · Photoshop · UX/UI · Visual systems',                     highlight: false },
+	  { cat: 'Process',          items: 'Project coordination · Mentoring · Documentation · Cross-team communication',   highlight: false },
+	],
+	bullets: {
+	  universal: [
+		'Built Universal\'s industry-first chatbot, deployed simultaneously across Orlando and Hollywood parks — reducing repetitive support load at scale',
+		'Led front-end development of the Meetings & Events website from brief through launch, coordinating with design, content, and stakeholder teams',
+		'Developed internal sales application later adopted by offices in Orlando, Hollywood, and New York',
+		'Designed and built Universal\'s first responsive email system — improving mobile rendering and campaign consistency',
+		'Mentored team members on front-end development practices and digital design standards',
+	  ],
+	  web: [
+		'Built email marketing, landing pages, and UI enhancements using HTML and CSS for consumer-facing brands',
+		'Developed new UI systems to simplify user experience at Marriott Vacation Club',
+		'Managed projects and mentored team members on web development and design workflows',
+	  ],
+	  design: [
+		'Designed and developed email marketing and web presence enhancements for Visit Orlando',
+		'Helped launch first email and online marketing initiatives at Tupperware — early adopter of digital channels',
+	  ],
+	  early: [
+		'30-year track record across print, web, animation, and brand design — with front-end development skills growing in step with the web itself',
+	  ],
+	}
+  },
+
+  support: {
+	label: 'IT Help Desk / Support',
+	color: '#0f766e',
+	skills: [
+	  { cat: 'Tech literacy',    items: 'HTML · CSS · JavaScript · GitHub · Terminal/CLI · CMS · Browser DevTools',      highlight: true },
+	  { cat: 'Support skills',   items: 'Troubleshooting · Documentation · User training · Problem diagnosis · Patience', highlight: true },
+	  { cat: 'Communication',    items: 'Explaining tech simply · Active listening · Client-facing · Mentoring · Calm under pressure', highlight: true },
+	  { cat: 'Operations',       items: 'Project coordination · Scheduling · Cross-team collaboration · Process improvement', highlight: false },
+	],
+	bullets: {
+	  universal: [
+		'Built Universal\'s first chatbot to reduce repetitive support inquiries — diagnosed the problem, designed the solution, shipped it',
+		'Developed internal sales tool used across Orlando, Hollywood, and New York — supported adoption and trained users',
+		'Served as creative-technical bridge between departments — translating complex technical needs into plain language and vice versa',
+		'Mentored team members on digital tools, development practices, and troubleshooting workflows',
+		'Managed long-range roadmaps and worked with leadership to prioritize and resolve ongoing technical needs',
+	  ],
+	  web: [
+		'Built and maintained web tools, landing pages, and email systems — handled ongoing updates and issue resolution',
+		'Managed client-facing projects, conducted design presentations, and resolved creative and technical feedback',
+	  ],
+	  design: [
+		'Managed print production and digital project workflows across multiple concurrent clients and deadlines',
+		'Diagnosed and resolved design, layout, and delivery issues across print and digital channels',
+	  ],
+	  early: [
+		'Decades of self-directed technical problem-solving across evolving tools, platforms, and production environments',
+	  ],
+	}
+  },
+
+  retail: {
+	label: 'Retail / Customer Service',
+	color: '#b45309',
+	skills: [
+	  { cat: 'People skills',    items: 'Patient care · Active listening · Empathy · De-escalation · Dignity-focused service', highlight: true },
+	  { cat: 'Reliability',      items: 'Consistent follow-through · Scheduling · Crisis calm · Self-directed · Dependable', highlight: true },
+	  { cat: 'Communication',    items: 'Clear explanation · Mentoring · Stakeholder management · Written & verbal',         highlight: false },
+	  { cat: 'Versatility',      items: 'Adaptable to task · Fast learner · 30 years across industries · Team-oriented',    highlight: false },
+	],
+	bullets: {
+	  universal: [
+		'Served as daily point of contact across creative, development, marketing, and executive teams — managed expectations with clarity and patience',
+		'Mentored team members one-on-one, adapting communication style to individual needs and skill levels',
+		'Managed multiple simultaneous projects under deadline pressure — consistently delivered without drama',
+		'Brokered partnership with UCF Design program, demonstrating initiative and relationship-building outside normal scope',
+	  ],
+	  web: [
+		'Managed client relationships and project timelines for email marketing and web campaigns at multiple organizations',
+		'Led creative reviews and design presentations — communicated clearly, received feedback gracefully, and delivered results',
+	  ],
+	  design: [
+		'Served internal clients across print and digital at Visit Orlando, Tupperware, and Ames True Temper — built lasting working relationships',
+		'Volunteered as hospice caregiver: provided direct, dignity-focused care to patients and emotional support to families',
+	  ],
+	  early: [
+		'30+ years of showing up, learning the environment, and making myself useful — across organizations large and small, in-house and freelance',
+	  ],
+	}
+  },
+
+  leadership: {
+	label: 'Leadership & Management',
+	color: '#991b1b',
+	skills: [
+	  { cat: 'Strategic',        items: 'Vision to execution · Roadmap planning · Initiative identification · First-to-market thinking', highlight: true },
+	  { cat: 'People',           items: 'Mentoring · Team development · University partnerships · Cross-functional alignment',          highlight: true },
+	  { cat: 'Delivery',         items: 'Project ownership · Stakeholder management · Multi-office coordination · On-time delivery',    highlight: true },
+	  { cat: 'Disciplines',      items: '30 years: design · development · UX · animation · illustration · digital strategy',           highlight: false },
+	],
+	bullets: {
+	  universal: [
+		'Conceived and built Universal\'s industry-first chatbot — identified the gap, proposed the solution, led development, and deployed to two parks simultaneously',
+		'Took over as design lead for Meetings & Events website mid-project and drove it to successful completion',
+		'Built and scaled an internal sales application from a single-office tool to multi-city adoption across Orlando, Hollywood, and New York',
+		'Served as de facto cross-departmental consultant — partnered with teams on creative and technical strategy beyond core role',
+		'Brokered a partnership with UCF\'s Design program to build a sustainable talent pipeline into the team',
+		'Mentored team members; worked with leadership on roadmaps and long-range planning',
+	  ],
+	  web: [
+		'Led creative direction, conducted stakeholder presentations, and mentored junior designers at Marriott Vacation Club and Affiliate Manager.com',
+		'Managed concurrent client projects — coordinated timelines, set expectations, and delivered results',
+	  ],
+	  design: [
+		'Played lead role in post-merger rebranding of Ames and True Temper — coordinated across teams to unify two brand identities',
+		'Launched first digital/email marketing initiatives at Tupperware — identified the opportunity, built the case, executed the work',
+		'Art directed photography and led client-facing design presentations across multiple organizations',
+	  ],
+	  early: [
+		'Three decades of building things from zero — teams, tools, systems, and creative programs — across agencies, in-house studios, and independent practice',
+	  ],
+	}
+  },
+};
+
+// ── STATE ────────────────────────────────────────────────────
+let currentRole = 'frontend';
+
+// ── HELPERS ─────────────────────────────────────────────────
+function setRoleColor(color) {
+  document.documentElement.style.setProperty('--current-role-color', color);
+  document.getElementById('role-dot').style.background = color;
+}
+
+function buildSkills(role) {
+  const grid = document.getElementById('skills-grid');
+  const data = roles[role].skills;
+  grid.innerHTML = data.map(s => `
+	<div class="skill-card ${s.highlight ? 'highlighted' : ''}">
+	  <div class="skill-cat">${s.cat}</div>
+	  <div class="skill-items">${s.items}</div>
+	</div>
+  `).join('');
+}
+
+function buildBullets(ulId, items) {
+  const ul = document.getElementById(ulId);
+  ul.innerHTML = items.map(b => `<li>${b}</li>`).join('');
+}
+
+function showValueProp(role) {
+  document.querySelectorAll('#value-prop-block p').forEach(p => p.classList.add('hidden'));
+  document.getElementById(`vp-${role}`).classList.remove('hidden');
+}
+
+function applyRole(role) {
+  const r = roles[role];
+  if (!r) return;
+
+  const fadeable = document.querySelectorAll('.fade-target');
+
+  // fade out
+  fadeable.forEach(el => el.classList.add('fade-out'));
+
+  setTimeout(() => {
+	// update color
+	setRoleColor(r.color);
+	document.getElementById('role-label').textContent = r.label;
+
+	// value prop
+	showValueProp(role);
+
+	// skills
+	buildSkills(role);
+
+	// bullets
+	buildBullets('bullets-universal', r.bullets.universal);
+	buildBullets('bullets-web',       r.bullets.web);
+	buildBullets('bullets-design',    r.bullets.design);
+	buildBullets('bullets-early',     r.bullets.early);
+
+	// job bar accents — primary job always accented
+	['bar-universal','bar-web','bar-design','bar-early'].forEach(id => {
+	  const el = document.getElementById(id);
+	  if (el) {
+		el.style.background = (id === 'bar-universal') ? r.color : '#ddd6fe22';
+	  }
+	});
+
+	// fade back in
+	fadeable.forEach(el => el.classList.remove('fade-out'));
+
+	currentRole = role;
+  }, 220);
+}
+
+// ── INIT ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait for Shoelace to define sl-select
+  customElements.whenDefined('sl-select').then(() => {
+	const select = document.getElementById('role-select');
+	applyRole('frontend');
+
+	select.addEventListener('sl-change', (e) => {
+	  applyRole(e.target.value);
+	});
+  });
+});
+</script>
+</body>
+</html>
