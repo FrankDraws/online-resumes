@@ -301,7 +301,7 @@
   <!-- ROLE SELECTOR -->
   <div class="role-bar">
 	<label for="role-select">Viewing as:</label>
-	<sl-select id="role-select" value="frontend" size="medium" hoist>
+	<sl-select id="role-select" value="leadership" size="medium" hoist>
 	  <sl-option value="creative">🎨 &nbsp;Creative &amp; Design</sl-option>
 	  <sl-option value="frontend">💻 &nbsp;Front-End / Web Dev</sl-option>
 	  <sl-option value="support">🛠 &nbsp;IT Help Desk / Support</sl-option>
@@ -644,7 +644,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Wait for Shoelace to define sl-select
   customElements.whenDefined('sl-select').then(() => {
 	const select = document.getElementById('role-select');
-	applyRole('frontend');
+	applyRole('leadership');
 
 	select.addEventListener('sl-change', (e) => {
 	  applyRole(e.target.value);
