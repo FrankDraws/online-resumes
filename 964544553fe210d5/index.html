@@ -36,7 +36,7 @@
 	--role-creative:   #7c3aed;
 	--role-frontend:   #0369a1;
 	--role-support:    #0f766e;
-	--role-retail:     #b45309;
+	--role-consulting: #c2410c;
 	--role-leadership: #991b1b;
 
 	--sans:  'Jost', system-ui, sans-serif;
@@ -291,6 +291,7 @@
 	  <div class="tagline">30+ years in design, technology &amp; digital experience — creative technologist, builder, and people developer.</div>
 	</div>
 	<div class="contact-block">
+	  Inverness, FL<br>
 	  <a href="mailto:frankdraws@outlook.com">frankdraws@outlook.com</a><br>
 	  <a href="https://www.frankjuval.com" target="_blank">frankjuval.com</a><br>
 	  <a href="https://codepen.io/frankDraws/" target="_blank">CodePen</a> &nbsp;·&nbsp;
@@ -301,11 +302,11 @@
   <!-- ROLE SELECTOR -->
   <div class="role-bar">
 	<label for="role-select">Viewing as:</label>
-	<sl-select id="role-select" value="leadership" size="medium" hoist>
+	<sl-select id="role-select" value="consulting" size="medium" hoist>
 	  <sl-option value="creative">🎨 &nbsp;Creative &amp; Design</sl-option>
 	  <sl-option value="frontend">💻 &nbsp;Front-End / Web Dev</sl-option>
 	  <sl-option value="support">🛠 &nbsp;IT Help Desk / Support</sl-option>
-	  <sl-option value="retail">🤝 &nbsp;Retail / Customer Service</sl-option>
+	  <sl-option value="consulting">🔎 &nbsp;Consulting</sl-option>
 	  <sl-option value="leadership">🧭 &nbsp;Leadership &amp; Management</sl-option>
 	</sl-select>
 	<div class="role-indicator">
@@ -318,8 +319,8 @@
   <div class="value-prop fade-target" id="value-prop-block">
 	<p id="vp-creative" class="hidden">I've spent 30 years solving visual problems — from editorial illustration and animation to brand systems, print campaigns, and digital experience design. I've art directed photography, designed for print at scale, built UX systems from scratch, and led the visual direction of major digital products. I bring creative vision, craft, and the ability to translate a brand's story into every pixel.</p>
 	<p id="vp-frontend" class="hidden">I build things that work and look good doing it — responsive web interfaces, chatbots, email systems, internal tools, and digital experiences. I bridge creative and technical with equal fluency, and I've shipped first-of-kind digital products at scale. I'm comfortable in the terminal, on GitHub, and in the browser dev tools. I'm ready to contribute to your team from day one.</p>
-	<p id="vp-support" class="hidden">I've spent decades diagnosing problems — visual, technical, and human. I built Universal's first chatbot to reduce repetitive support load, developed internal tools that spread across multiple offices, and spent years adapting to whatever the work required. I'm calm under pressure, patient with non-technical users, and I document things clearly. I've also homeschooled and volunteered in hospice care — I know how to meet people where they are.</p>
-	<p id="vp-retail" class="hidden">I show up, I follow through, and I treat people with patience and respect — because that's how I've operated for 30 years across organizations large and small. I've served internal clients, mentored teammates, navigated complex stakeholder relationships, and spent years as a caregiver for both family members and hospice patients. I understand service, urgency, and dignity. I'm ready to bring that same steady energy to your team.</p>
+	<p id="vp-support" class="hidden">I've spent decades diagnosing problems — visual, technical, and human. I built Universal's first chatbot to reduce repetitive support load, developed internal tools that spread across multiple offices, and spent years adapting to whatever the work required. I'm calm under pressure, patient with non-technical users, and I document things clearly. I've also homeschooled three teenagers and volunteered in hospice care — I know how to meet people where they are.</p>
+	<p id="vp-consulting" class="hidden">I've spent 30 years embedded inside organizations as both the creative and the technologist — which means I understand problems from multiple angles before I propose a solution. I've consulted across departments at Universal Parks & Resorts, partnered with leadership on roadmaps, and delivered first-of-kind digital products that no one on the existing team knew how to build. I work well independently, communicate clearly across disciplines, and I bring 30 years of pattern recognition to every engagement.</p>
 	<p id="vp-leadership" class="hidden">I've spent 30 years identifying gaps, building solutions, and bringing people along for the ride. I launched Universal's first chatbot, led website redesigns from brief to launch, built internal tools that scaled across offices, and brokered a university partnership to strengthen our talent pipeline. I mentor naturally, communicate across disciplines, and make things happen without waiting for permission. My career is a record of initiative, ownership, and results.</p>
   </div>
 
@@ -353,7 +354,7 @@
 	  <div class="gap-inner">
 		<div class="gap-title">Career Transition &amp; Independent Work</div>
 		<div class="gap-meta"><strong>Self-directed</strong> &nbsp;·&nbsp; 2020–2026</div>
-		<div class="gap-desc">Following an unexpected job loss, redirected focus toward what mattered most while maintaining professional activity: provided caregiving for family members managing serious medical needs; volunteered as a direct caregiver for hospice patients, focused on dignity and comfort; and homeschooled — researching curriculum, designing lesson plans, and adapting instruction to individual learning styles. Maintained active freelance client work in web design and front-end development throughout.</div>
+		<div class="gap-desc">Following an unexpected job loss, redirected focus toward what mattered most while maintaining professional activity: provided caregiving for family members managing serious medical needs; volunteered as a direct caregiver for hospice patients, focused on dignity and comfort; and homeschooled three teenagers — researching curriculum, designing lesson plans, and adapting instruction to individual learning styles. Maintained active freelance client work in web design and front-end development throughout.</div>
 	  </div>
 	</div>
 
@@ -504,32 +505,34 @@ const roles = {
 	}
   },
 
-  retail: {
-	label: 'Retail / Customer Service',
-	color: '#b45309',
+  consulting: {
+	label: 'Consulting',
+	color: '#c2410c',
 	skills: [
-	  { cat: 'People skills',    items: 'Patient care · Active listening · Empathy · De-escalation · Dignity-focused service', highlight: true },
-	  { cat: 'Reliability',      items: 'Consistent follow-through · Scheduling · Crisis calm · Self-directed · Dependable', highlight: true },
-	  { cat: 'Communication',    items: 'Clear explanation · Mentoring · Stakeholder management · Written & verbal',         highlight: false },
-	  { cat: 'Versatility',      items: 'Adaptable to task · Fast learner · 30 years across industries · Team-oriented',    highlight: false },
+	  { cat: 'Discovery',        items: 'Needs assessment · Gap analysis · Stakeholder interviews · Requirements definition',        highlight: true },
+	  { cat: 'Delivery',         items: 'Strategy to execution · Prototyping · Documentation · First-to-market solutions',           highlight: true },
+	  { cat: 'Communication',    items: 'Presentations · Cross-discipline translation · Client management · Written recommendations', highlight: true },
+	  { cat: 'Disciplines',      items: '30 years: design · front-end dev · UX · animation · digital strategy · creative direction', highlight: false },
 	],
 	bullets: {
 	  universal: [
-		'Served as daily point of contact across creative, development, marketing, and executive teams — managed expectations with clarity and patience',
-		'Mentored team members one-on-one, adapting communication style to individual needs and skill levels',
-		'Managed multiple simultaneous projects under deadline pressure — consistently delivered without drama',
-		'Brokered partnership with UCF Design program, demonstrating initiative and relationship-building outside normal scope',
+		'Acted as in-house consultant across departments — partnered with creative, marketing, development, and executive teams on strategy and execution beyond core role',
+		'Identified the chatbot opportunity independently, built the business case, and delivered Universal\'s industry-first parks assistant across two locations',
+		'Diagnosed and resolved a stalled website project — stepped in as design lead mid-stream and drove Meetings & Events site to launch',
+		'Developed internal sales tool from scratch based on observed workflow gaps — solution scaled to three offices without a formal mandate',
+		'Brokered partnership with UCF Design program after identifying a talent pipeline problem — proposed, negotiated, and implemented the solution',
 	  ],
 	  web: [
-		'Managed client relationships and project timelines for email marketing and web campaigns at multiple organizations',
-		'Led creative reviews and design presentations — communicated clearly, received feedback gracefully, and delivered results',
+		'Consulted across creative and technical workstreams for hospitality and affiliate clients — assessed needs, recommended approaches, and delivered solutions',
+		'Led design reviews and stakeholder presentations — translated creative decisions into business rationale for non-design audiences',
 	  ],
 	  design: [
-		'Served internal clients across print and digital at Visit Orlando, Tupperware, and Ames True Temper — built lasting working relationships',
-		'Volunteered as hospice caregiver: provided direct, dignity-focused care to patients and emotional support to families',
+		'Served as cross-functional design consultant at Tupperware and Ames True Temper — brought in for versatility across print, web, and brand challenges',
+		'Identified and executed first digital marketing opportunities at Tupperware before the practice was established internally',
+		'Led post-merger brand unification for Ames True Temper — assessed both identities, recommended direction, and executed the rollout',
 	  ],
 	  early: [
-		'30+ years of showing up, learning the environment, and making myself useful — across organizations large and small, in-house and freelance',
+		'Three decades of freelance and agency consulting — diagnosing client needs, recommending solutions, and delivering across design, animation, and digital disciplines',
 	  ],
 	}
   },
@@ -569,7 +572,7 @@ const roles = {
 };
 
 // ── STATE ────────────────────────────────────────────────────
-let currentRole = 'frontend';
+let currentRole = 'consulting';
 
 // ── HELPERS ─────────────────────────────────────────────────
 function setRoleColor(color) {
@@ -644,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Wait for Shoelace to define sl-select
   customElements.whenDefined('sl-select').then(() => {
 	const select = document.getElementById('role-select');
-	applyRole('leadership');
+	applyRole('consulting');
 
 	select.addEventListener('sl-change', (e) => {
 	  applyRole(e.target.value);
